@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="CSS/GradeCalc.css"/>
+	<script type="text/javascript" src="AppleClasses/AppleWidget.js"> </script>
+	<script>widget.notifyContentIsReady()</script>
+</head>
+<body>
+<h1>Learning Targets to Letter Grade Convertor</h1>
+<div style="margin: auto;">
+	<button class="float" id="add-lts">Add LT</button>
+	<button class="float button-primary" onclick="grade2();">Find Grade</button>
+	<button class="float" onClick="window.location.reload();">Clear</button>
+	<hr/>
+</div>
+<form id="wrap" style="margin: auto; height: 136px;">
+	<!--------------------------------------------------
+	 ============  Where Added Fields Go  ==============
+	 --------------------------------------------------->	
+</form>
+<hr/>
+<p id="sentence">Your letter grade is: <span id="output"></span></p>
+
+<script>
+$(document).ready(function() {    
+    var x = 0; //initial text box count
+    $('#add-lts').click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < 6){ //max input box allowed
+            x++; //text box increment
+            $('#wrap').append('<div class="float"><select name="mygrade[]"><option disabled selected value>--</option><option value="N">N</option><option value="D">D</option><option value="P">P</option><option value="E">E</option></select><a href="#" class="remove_field">X</a></div>'); //add input box
+        }
+    });
+    
+    $('#wrap').on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+});
+</script>
+<script>
+var grade2 = function() {
+  s = document.querySelectorAll("#wrap select"); //get all selectors added
+  var nc = 0;
+  var dc = 0;
+  var pc = 0; //the number of Ps is irrelevant and could be not counted, removing this and line 51
+  var ec = 0;
+  for (var i = 0; i < s.length; i++) {
+    switch (s[i].value) {
+      case "N": nc++; break;
+      case "D": dc++; break;
+      case "P": pc++; break;
+      case "E": ec++; break;
+      default: break; //ignore unset grades
+    }
+  }
+  //divisions have been turned into multiplications to avoid any possible rounding errors
+  var ret = "";
+  var len = s.length;
+  if (len == 0) { ret = "I"; }
+  else if (ec*2 >= len && nc == 0 && dc == 0) { ret = "A"; }
+  else if (ec*4 >= len && nc == 0 && dc == 0) { ret = "A-"; }
+  else if (ec + pc == len) { ret = "B+"; }
+  else if ((pc + ec)*2 == len && dc*2 == len && nc == 0) { ret = "C+"; }
+  else if ((ec + pc)*2 >= len && nc == 0) { ret = "B"; }
+  else if ((pc + ec)*2 >= len && nc*3 <= len) { ret = "C"; }
+  else if ((nc + dc)*2 >= len) { ret = "N"; }
+  else { ret = "I"; }
+  document.getElementById("output").innerHTML = ret;
+};
+</script>
+</body>
+</html>
