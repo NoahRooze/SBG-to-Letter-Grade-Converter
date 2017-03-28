@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 	<style>
 		html {font-size: 62.5%;}
 body {
@@ -74,7 +73,7 @@ hr {margin: 0px;  border-width: 0; border-top: 2px solid #33C3F0;  clear: left; 
 <body>
 <h1>Learning Targets to Letter Grade Convertor</h1>
 <div style="margin: auto;">
-	<button class="float" id="add-lts">Add LT</button>
+	<button class="float" id="add-lts" onclick="add_input();">Add LT</button>
 	<button class="float button-primary" onclick="grade2();">Find Grade</button>
 	<button class="float" onClick="window.location.reload();">Clear</button>
 	<hr/>
@@ -88,20 +87,15 @@ hr {margin: 0px;  border-width: 0; border-top: 2px solid #33C3F0;  clear: left; 
 <p id="sentence">Your letter grade is: <span id="output"></span></p>
 
 <script>
-$(document).ready(function() {    
-    var x = 1; //initial text box count
-    $('#add-lts').click(function(e){ //on add input button click
-        e.preventDefault();
-        if(x < 6){ //max input box allowed
-            x++; //text box increment
-            $('#wrap').append('<div class="float"><select name="mygrade[]"><option disabled selected value>--</option><option value="N">N</option><option value="D">D</option><option value="P">P</option><option value="E">E</option></select><a href="#" class="remove_field">X</a></div>'); //add input box
-        }
-    });
-    
-    $('#wrap').on("click",".remove_field", function(e){ //user click on remove text
-        e.preventDefault(); $(this).parent('div').remove(); x--;
-    })
-});
+var x = 1;
+var add_input = function() { 
+	if(x < 6){ 
+		x++;  
+	document.getElementById('wrap').innerHTML += '<div class="float"><select name="mygrade[]"><option disabled selected value>--</option><option value="N">N</option><option value="D">D</option><option value="P">P</option><option value="E">E</option></select><a href="#" class="remove_field" onclick="remove_field(event);">X</a></div>'; 
+
+ } }; 
+var remove_field = function(e) { e.toElement.parentNode.parentNode.removeChild(e.toElement.parentNode); x--; };
+
 </script>
 <script>
 var grade2 = function() {
@@ -135,3 +129,4 @@ var grade2 = function() {
 </script>
 </body>
 </html>
+
