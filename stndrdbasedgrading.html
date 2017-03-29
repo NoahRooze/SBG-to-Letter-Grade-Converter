@@ -91,7 +91,10 @@ var x = 1;
 var add_input = function() { 
 	if(x < 6){ 
 		x++;  
-	document.getElementById('wrap').innerHTML += '<div class="float"><select name="mygrade[]"><option disabled selected value>--</option><option value="N">N</option><option value="D">D</option><option value="P">P</option><option value="E">E</option></select><a href="#" class="remove_field" onclick="remove_field(event);">X</a></div>'; 
+	var node = document.createElement('div');
+node.innerHTML = '<select name="mygrade[]"><option disabled selected value>--</option><option value="N">N</option><option value="D">D</option><option value="P">P</option><option value="E">E</option></select><a href="#" class="remove_field" onclick="remove_field(event);">X</a>';
+node.className = 'float';
+document.getElementById('wrap').appendChild(node);
 
  } }; 
 var remove_field = function(e) { e.toElement.parentNode.parentNode.removeChild(e.toElement.parentNode); x--; };
