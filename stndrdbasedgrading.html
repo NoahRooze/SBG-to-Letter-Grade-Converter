@@ -66,14 +66,14 @@ select {
 	margin-bottom: 1.5rem;
 	cursor: pointer; 
 	-webkit-appearance: none;
-border-radius: 0;}
+	border-radius: 0;}
 select:focus {border: 2px solid #33C3F0; outline: 0;}
 
 hr {margin: 0px;  border-width: 0; border-top: 2px solid #33C3F0;  clear: left; display: block;}
 	</style>
 </head>
 <body>
-<h1>Learning Targets to Letter Grade Convertor</h1>
+<h1>Learning Targets to Letter Grade Converter</h1>
 <div style="margin: auto;">
 	<button class="float" id="add-lts" onclick="add_input();">Add LT</button>
 	<button class="float button-primary" onclick="grade2();">Find Grade</button>
@@ -87,7 +87,7 @@ hr {margin: 0px;  border-width: 0; border-top: 2px solid #33C3F0;  clear: left; 
 <p id="sentence">Your letter grade is: <span id="output"></span></p>
 
 <script>
-var x = 1;
+var x = 0;
 var add_input = function() { 
 	if(x < 6){ 
 		x++;  
