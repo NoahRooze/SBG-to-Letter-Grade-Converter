@@ -1,6 +1,6 @@
 # SBG to Letter Grade Converter
 
-A little approach to converting Standards-Based Learning Targets to Average-based Letter Grades. I wrote this for my school's use, however, if you would like to incorporate this into your own project or improve it somehow: Go ahead!
+A little approach to converting Standards-Based Learning Targets to Average-based Letter Grades. Click here to learn more about [Standards Based Grading] (http://open.spps.org/Domain/6451)I wrote this for my school's use, however, if you would like to incorporate this into your own project or improve it somehow: Go ahead!
 
 ## Deployment
 
@@ -10,7 +10,7 @@ In the future, there's plans to make this Web App available via iFrame embed, un
 
 HTML 5, CSS 3, and JS
 
-No other dependencies! :)
+No dependencies! :)
 
 ## Versioning
 
